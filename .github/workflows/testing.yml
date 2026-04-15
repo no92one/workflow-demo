@@ -58,6 +58,8 @@ jobs:
             - name: Run api tests
               run: npm run test:api
 
-            - name: Run lint tests
+            - name: Run Frontend Linter
               run: npm run lint
 
+            - name: Run .NET Formater
+              run: dotnet format backend/App/App.csproj --verify-no-changes
