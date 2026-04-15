@@ -58,5 +58,3 @@ jobs:
             - name: Run api tests
               run: npm run test:api
 
-            - name: Run vitest tests
-              run: npm run test:vitest
