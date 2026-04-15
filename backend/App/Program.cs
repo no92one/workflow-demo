@@ -1,6 +1,9 @@
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 var greeter = new Greeter();
 
 app.MapGet("/api", () => "Hello World!");
