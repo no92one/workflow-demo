@@ -58,3 +58,6 @@ jobs:
             - name: Run api tests
               run: npm run test:api
 
+            - name: Run lint tests
+              run: npm run lint
+
