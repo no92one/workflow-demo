@@ -2,7 +2,7 @@ namespace App.Tests;
 
 public class GreeterTest
 {
-    private readonly Greeter _greeter = new();
+    private readonly greeter _greeter = new();
 
     [Fact]
     public void Greet_ReturnsGreetingWithName()

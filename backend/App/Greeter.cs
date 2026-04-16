@@ -1,4 +1,4 @@
-﻿public class Greeter
+﻿public class greeter
 {
     public string Greet(string name)
     {
