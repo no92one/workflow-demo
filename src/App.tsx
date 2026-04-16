@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 
-interface message {
-    message: string
-}
+// interface message {
+//     message: string
+// }
 
 export default function App() {
 
