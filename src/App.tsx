@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 
-
 interface message {
     message: string
 }
