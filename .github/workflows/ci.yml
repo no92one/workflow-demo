@@ -150,12 +150,6 @@ jobs:
       - name: Build frontend
         run: npm run build 
 
-      - name: Run dotnet server
-        run: |
-          npm run backend &
-          npx wait-on http://localhost:5001
-          echo "Server started"
-
       - name: Install Playwright browsers
         if: ${{ matrix.suite == 'e2e' }}
         run: npx playwright install
@@ -167,15 +161,17 @@ jobs:
       - name: Run API tests
         if: ${{ matrix.suite == 'api' }}
         run: |
-          dotnet run --project backend/App --urls http://localhost:5010 &
-          sleep 10
+          npm run backend &
+          npx wait-on http://localhost:5001
+          echo "Server started"
           npm run test:api
 
       - name: Run E2E tests
         if: ${{ matrix.suite == 'e2e' }}
         run: |
-          dotnet run --project backend/App --urls http://localhost:5010 &
-          sleep 10
+          npm run backend &
+          npx wait-on http://localhost:5001
+          echo "Server started"
           npm run test:e2e
 
       - name: Upload test artifacts
