@@ -150,8 +150,11 @@ jobs:
       - name: Build frontend
         run: npm run build 
 
-      - name: Start backend
-        run: npm run backend
+      - name: Run dotnet server
+        run: |
+          npm run backend &
+          npx wait-on http://localhost:5001
+          echo "Server started"
 
       - name: Install Playwright browsers
         if: ${{ matrix.suite == 'e2e' }}
