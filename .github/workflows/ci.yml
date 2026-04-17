@@ -73,12 +73,6 @@ jobs:
       - name: Build frontend
         run: npm run build
 
-      - name: Copy frontend build into backend wwwroot
-        run: |
-          mkdir -p backend/App/wwwroot
-          rm -rf backend/App/wwwroot/*
-          cp -r dist/. backend/App/wwwroot/
-
       - name: Publish backend
         run: dotnet publish backend/App/App.csproj -c Release -o out --no-restore
 
