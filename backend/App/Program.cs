@@ -8,7 +8,7 @@ var greeter = new Greeter();
 
 app.MapGet("/api", () => "Hello World!");
 app.MapGet("/api/hello", () => new { message = "Hello from .NET!" });
-app.MapGet("/api/greet/{name}", (string name) => new { message = greeter.Greet(name) });
+app.MapGet("/api/greeting/{name}", (string name) => new { message = greeter.Greet(name) });
 
 app.MapGet("/api/health", () => Results.Ok("OK"));
 
