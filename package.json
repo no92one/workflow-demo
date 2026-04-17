@@ -8,14 +8,13 @@
     "dev": "vite",
     "backend": "dotnet run --project backend/App",
     "test:xunit": "dotnet test backend/MyApp.slnx",
-    "test:api": "newman run postman/demo.postman_collection.json -e postman/demo.postman_environment.json --reporters cli",
+    "test:api": "cd postman && newman run demo.postman_collection.json -e demo.postman_environment.json --reporters cli",
     "test:e2e": "npx bddgen && npx playwright test",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
-    "newman": "^6.2.2",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
   },
