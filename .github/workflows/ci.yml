@@ -144,6 +144,9 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
 
+      - name: Install newman
+        run: cd postman & npm ci 
+
       - name: Install Playwright browsers
         if: ${{ matrix.suite == 'e2e' }}
         run: npx playwright install --with-deps
