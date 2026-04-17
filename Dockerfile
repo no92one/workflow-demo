@@ -1,21 +1,31 @@
-FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+# Stage 1: Build the React frontend
+FROM node:22-alpine AS frontend-builder
 WORKDIR /src
 
-# Kopiera projektfilen först för bättre caching
+COPY package*.json ./
+RUN npm ci
+
+COPY . .
+RUN npm run build
+
+# Stage 2: Build the .NET backend and bundle frontend output into wwwroot
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS backend-builder
+WORKDIR /src
+
 COPY backend/App/App.csproj backend/App/
 RUN dotnet restore backend/App/App.csproj
 
-# Kopiera resten av koden
-COPY . .
+COPY backend/ backend/
 
-# Publicera appen
-RUN dotnet publish backend/App/App.csproj -c Release -o /app/publish
+# Copy built frontend into ASP.NET static files folder
+COPY --from=frontend-builder /src/dist/ ./backend/App/wwwroot/
 
-FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS final
+RUN dotnet publish backend/App/App.csproj -c Release -o /app/publish --no-restore
+
+# Stage 3: Runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS runtime
 WORKDIR /app
-COPY --from=build /app/publish .
 
-ENV ASPNETCORE_URLS=http://0.0.0.0:10000
-EXPOSE 10000
+COPY --from=backend-builder /app/publish .
 
-ENTRYPOINT ["dotnet", "App.dll"]
+CMD ["sh", "-c", "ASPNETCORE_URLS=http://+:${PORT:-10000} dotnet App.dll"]
