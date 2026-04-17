@@ -17,9 +17,6 @@ RUN dotnet restore backend/App/App.csproj
 
 COPY backend/ backend/
 
-# Copy built frontend into ASP.NET static files folder
-COPY --from=frontend-builder /src/dist/ ./backend/App/wwwroot/
-
 RUN dotnet publish backend/App/App.csproj -c Release -o /app/publish --no-restore
 
 # Stage 3: Runtime image
