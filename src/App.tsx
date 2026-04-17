@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react'
 
+interface message {
+    message: string
+}
+
 export default function App() {
 
     const [message, setMessage] = useState('');
@@ -8,7 +12,7 @@ export default function App() {
         (async () => {
             const response = await fetch('/api/hello');
             const data = await response.json();
-            setMessage((data as any).message);
+            setMessage((data as message).message);
         })();
     }, []);
 
