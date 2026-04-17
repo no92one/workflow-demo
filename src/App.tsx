@@ -17,7 +17,7 @@ export default function App() {
     }, []);
 
     return <>
-        <h1>A message from our backend</h1>
+        <h1>A message from our backend!</h1>
         <p>{message}</p>
     </>
 
