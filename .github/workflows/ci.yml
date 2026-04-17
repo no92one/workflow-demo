@@ -145,11 +145,17 @@ jobs:
         run: npm ci
 
       - name: Install newman
-        run: cd postman & npm ci 
+        run: cd postman & npm ci
+
+      - name: Build frontend
+        run: npm run build 
+
+      - name: Start backend
+        run: npm run backend
 
       - name: Install Playwright browsers
         if: ${{ matrix.suite == 'e2e' }}
-        run: npx playwright install --with-deps
+        run: npx playwright install
 
       - name: Run unit tests
         if: ${{ matrix.suite == 'unit' }}
