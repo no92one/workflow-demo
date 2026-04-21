@@ -1,16 +1,16 @@
 {
-  "name": "postman",
+  "name": "post-they",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:api": "post-they run api-tests"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
-    "newman": "^6.2.2"
+    "post-they": "^0.2.0"
   }
 }

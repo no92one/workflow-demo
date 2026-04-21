@@ -64,8 +64,8 @@ jobs:
       - name: Install frontend/system test dependencies
         run: npm ci
 
-      - name: Install newman
-        run: cd postman & npm ci 
+      - name: Install post-they
+        run: cd post-they & npm ci 
 
       - name: Scan npm dependencies
         run: npm audit --audit-level=high
@@ -144,8 +144,8 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
 
-      - name: Install newman
-        run: cd postman & npm ci
+      - name: Install post-they
+        run: cd post-they & npm ci
 
       - name: Build frontend
         run: npm run build 
